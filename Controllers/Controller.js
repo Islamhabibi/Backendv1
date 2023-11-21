@@ -11,6 +11,7 @@ exports.getProduct=async(req,res)=>{
             .send({message:"erreur"})
     }
 }
+
 exports.AddProduct= async(req,res) =>{
     try {
         const product = new products(req.body)

@@ -10,4 +10,5 @@ const product_schema= new mongoose.Schema(
        timestamps: true 
     }
 )
+//creation de la schema
 module.exports=mongoose.model("products",product_schema) 
