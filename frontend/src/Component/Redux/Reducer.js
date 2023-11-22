@@ -1,7 +1,8 @@
-import { ALLPRODUCT, POSTPRODUCT } from "./ActionType"
+import { ALLPRODUCT, ONEPRODUCT, POSTPRODUCT } from "./ActionType"
 
 const initialState = {
-    products: []
+    products: [],
+    product:{}
 }
 
 export const products_reducer = (state = initialState, { type, payload }) => {
@@ -9,6 +10,8 @@ export const products_reducer = (state = initialState, { type, payload }) => {
 
         case ALLPRODUCT:
             return { ...state, products: payload }
+        case ONEPRODUCT:
+            return { ...state, product: payload }    
         
 
         default:

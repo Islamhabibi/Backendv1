@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALLPRODUCT, POSTPRODUCT } from "./ActionType";
+import { ALLPRODUCT, ONEPRODUCT, POSTPRODUCT } from "./ActionType";
 export const Get = () => async (dispatch) => {
     try {
       const res = await axios
@@ -20,11 +20,31 @@ export const AddProduct = (data) => async (dispatch) => {
     }
   
   };
-  export const DeleteProduct = (data) => async (dispatch) => {
+  export const DeleteProduct = (id) => async (dispatch) => {
     try {
       const res = await axios
         .delete("http://localhost:5668/product/delete/"+id)
         .then((res) => dispatch(Get()));
+    } catch (error) {
+      console.log(error);
+    }
+  
+  };
+  export const UpdateProduct = (id,data) => async (dispatch) => {
+    try {
+      const res = await axios
+        .put("http://localhost:5668/product/update/"+id,data)
+        .then((res) => dispatch(Get()));
+    } catch (error) {
+      console.log(error);
+    }
+  
+  };
+  export const FindProduct = (id) => async (dispatch) => {
+    try {
+      const res = await axios
+        .get("http://localhost:5668/product/get/"+id)
+        .then((res) => dispatch({ type: ONEPRODUCT, payload: res.data.product }));
     } catch (error) {
       console.log(error);
     }

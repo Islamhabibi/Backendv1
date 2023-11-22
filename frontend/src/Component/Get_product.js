@@ -1,10 +1,25 @@
+import { Button } from 'bootstrap';
+import { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
+import { useDispatch, useSelector } from 'react-redux';
+import { DeleteProduct, Get } from './Redux/Action';
+import Update_product from './Update_product';
 
-function Get_product({products}) {
+import { Link, Route, Routes } from 'react-router-dom';
+import Detail_product from './Detail_product';
+
+function Get_product() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(Get());
+  }, [])
+  const products = useSelector((state) => state.products);
+  console.log(products);
   return (
     <>
-  
+      
     <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" ,justifyContent: "space-around"}}>
       {products.map((e) => (
           <CardGroup>
@@ -20,6 +35,9 @@ function Get_product({products}) {
         <Card.Footer>
           <small className="text-muted">{e.price}</small>
         </Card.Footer>
+        <button onClick={()=>dispatch(DeleteProduct(e._id))}>Delete</button>
+        <Update_product data={e}/>
+        <Link to={`/detail/${e._id}`}>go to detail</Link>
       </Card>
       </CardGroup>
       ))}

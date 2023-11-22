@@ -8,18 +8,19 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Get_product from './Component/Get_product';
 import CardGroup from 'react-bootstrap/CardGroup';
+import { Link, Route, Routes } from 'react-router-dom';
+import Detail_product from './Component/Detail_product';
 function App() {
-  const dispatch = useDispatch()
+ 
 
-  useEffect(() => {
-    dispatch(Get());
-  }, []);
-  const products = useSelector((state) => state.products);
-  console.log(products);
   return (
     <>
       <Add_product />
-      <Get_product products={products}/>
+      <Link to={'/products'}>go home</Link>
+      <Routes>
+        <Route path='/products' element={<Get_product />}/>
+        <Route path='/detail/:id' element={<Detail_product/>}/>    
+      </Routes>
       </>
   )
 }
