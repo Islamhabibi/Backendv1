@@ -8,14 +8,13 @@ import Update_product from './Update_product';
 
 import { Link, Route, Routes } from 'react-router-dom';
 import Detail_product from './Detail_product';
-
 function Get_product() {
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(Get());
   }, [])
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.products.products);
   console.log(products);
   return (
     <>

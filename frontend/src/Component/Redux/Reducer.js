@@ -1,8 +1,9 @@
-import { ALLPRODUCT, ONEPRODUCT, POSTPRODUCT } from "./ActionType"
+import { ALLPRODUCT, ALLUSERS, ONEPRODUCT, POSTPRODUCT } from "./ActionType"
 
 const initialState = {
     products: [],
-    product:{}
+    product:{},
+    users:[]
 }
 
 export const products_reducer = (state = initialState, { type, payload }) => {
@@ -18,3 +19,17 @@ export const products_reducer = (state = initialState, { type, payload }) => {
             return state
     }
 }
+export const users_reducer = (state = initialState, { type, payload }) => {
+    switch (type) {
+
+        case ALLUSERS:
+            return { ...state, users: payload }
+         
+        
+
+        default:
+            return state
+    }
+}
+
+

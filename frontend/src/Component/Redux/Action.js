@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALLPRODUCT, ONEPRODUCT, POSTPRODUCT } from "./ActionType";
+import { ALLPRODUCT, ALLUSERS, ONEPRODUCT, POSTPRODUCT } from "./ActionType";
 export const Get = () => async (dispatch) => {
     try {
       const res = await axios
@@ -50,3 +50,51 @@ export const AddProduct = (data) => async (dispatch) => {
     }
   
   };
+/////////// User//////////////
+export const GetUsers = ()=> async(dispatch)=>{
+  try {
+    const res= await axios
+      .get("http://localhost:5668/users/get/")
+      .then((res)=>dispatch({type:ALLUSERS, payload:res.data.AllUsers}))
+  } catch (error) {
+    console.log(error);
+  }
+}
+export const AddUser = (data,navigate)=> async(dispatch)=>{
+  try {
+    const res = await axios
+      .post("http://localhost:5668/users/post/",data)
+      .then((res)=>dispatch(GetUsers()))
+      navigate('/user/login')
+  } catch (error) {
+    console.log(error);
+  }
+}
+export const findUser = (data)=> async(dispatch)=>{
+  try {
+    const res= await axios
+      .post("http://localhost:5668/users/login",data)
+      .then((res)=>dispatch(GetUsers()))
+  } catch (error) {
+    console.log(error);
+  }
+}
+export const updateUser = (id,data)=> async(dispatch)=>{
+  try {
+    const res = await axios
+      .put("http://localhost:5668/users/update"+id,data)
+      .then((res)=>dispatch(GetUsers()))
+  } catch (error) {
+    console.log(error)
+    
+  }
+}
+export const deletUser = (id)=> async(dispatch)=>{
+  try {
+    const res= await axios
+      .delete("http://localhost:5668/users/delete/"+id)
+      .then((res)=>dispatch(GetUsers()))
+  } catch (error) {
+    console.log(error)
+  }
+}
