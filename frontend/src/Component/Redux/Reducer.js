@@ -3,7 +3,8 @@ import { ALLPRODUCT, ALLUSERS, ONEPRODUCT, POSTPRODUCT } from "./ActionType"
 const initialState = {
     products: [],
     product:{},
-    users:[]
+    users:[],
+    basket: []
 }
 
 export const products_reducer = (state = initialState, { type, payload }) => {
@@ -13,7 +14,10 @@ export const products_reducer = (state = initialState, { type, payload }) => {
             return { ...state, products: payload }
         case ONEPRODUCT:
             return { ...state, product: payload }    
-        
+        case "ADDTOBASKET":
+            return{...state, basket:[...state.basket,payload]}
+        case "REMOVEFROMBASKET":
+        return{...state, basket:state.basket.filter(e=>e.pro._id !== payload)}
 
         default:
             return state

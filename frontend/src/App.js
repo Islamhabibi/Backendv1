@@ -8,6 +8,9 @@ import Register_user from './Component/Users/Register_user';
 import Login from './Component/Users/Login';
 import ListUsers from './Component/Users/ListUsers';
 import Navbar from './Component/Navbar';
+import Basket from './Component/Product/Basket';
+import Cancel from './Component/Product/cancel';
+import Success from './Component/Product/success';
 function App() {
 
 
@@ -20,9 +23,12 @@ function App() {
       <Routes>
         <Route path='/products' element={<Get_product />} />
         <Route path='/detail/:id' element={<Detail_product />} />
+        <Route path='/basket/' element={<Basket />} />
         <Route path='/users' element={<Register_user />} />
         <Route path='/user/login' element={<Login />} />
         <Route path='users/get' element={<ListUsers />} />
+        <Route path='/success' element={<Success />} />
+        <Route path='/cancel' element={<Cancel />} />
 
 
       </Routes>

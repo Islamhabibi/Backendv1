@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const basket = useSelector(state=>state.products.basket)
  
    
 
@@ -36,6 +36,12 @@ const Navbar = () => {
                 <li className="nav-item">
                   <Link className="nav-link" to={'/products'}>
                      List of products
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/basket'}>
+                     Basket
+                     {basket.length}
                   </Link>
                 </li>
                 <li className="nav-item">

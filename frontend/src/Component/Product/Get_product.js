@@ -1,5 +1,5 @@
 import { Button } from 'bootstrap';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +9,9 @@ import Update_product from './Update_product';
 import { Link, Route, Routes } from 'react-router-dom';
 import Detail_product from './Detail_product';
 import Add_product from './Add_product';
+import { addToBasket } from '../Redux/ActionBasket';
 function Get_product() {
+  const [quantity, setQuantity] = useState(0)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -35,6 +37,12 @@ function Get_product() {
         <Card.Footer>
           <small className="text-muted">{e.price}</small>
         </Card.Footer>
+        <Card.Footer>
+          <button className="text-muted" onClick={()=>setQuantity (quantity+1)}>+</button>
+          <small className="text-muted">{quantity}</small>
+          <button className="text-muted" onClick={()=>0?setQuantity (quantity-1):quantity}>-</button>
+        </Card.Footer>
+        <button onClick={()=>dispatch(addToBasket({pro:e, quantity}))}>Add to basket</button>
         <button onClick={()=>dispatch(DeleteProduct(e._id))}>Delete</button>
         <Update_product data={e}/>
         <Link to={`/detail/${e._id}`}>go to detail</Link>
