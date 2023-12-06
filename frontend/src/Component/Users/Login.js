@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './Register.css'
 import { useDispatch } from 'react-redux';
-import { AddUser, findUser } from './Redux/Action';
-import { Link, useNavigate } from 'react-router-dom';
+ import { Link, useNavigate } from 'react-router-dom';
+import { findUser } from '../Redux/Action';
 function Login() {
 
     const [formData, setFormData] = useState({
@@ -98,7 +98,7 @@ function Login() {
                                             className="btn btn-primary btn-block mb-4"
                                             onClick={Log_user}
                                         >
-                                            Register
+                                            Login
                                         </button>
                                         {/* Register buttons */}
                                         <div className="text-center">

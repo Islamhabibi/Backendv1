@@ -2,10 +2,11 @@ const mongoose = require("mongoose")
 const connection=async ()=>{
     try {
         await mongoose
-        .connect("mongodb://127.0.0.1:27017/islemdb")
+        .connect("mongodb+srv://islemhabibi93:islemhabibi.@cluster0.ghnfxem.mongodb.net/")
+        //.connect("mongodb://127.0.0.1:27017/islemdb" ) 
         console.log("database is connect")
     } catch (error) {
-        console.log(error)
+        console.log(`Could not connect to MongoDB: ${error.message}`)
     }
 }
-module.exports= connection 
+module.exports= connection  

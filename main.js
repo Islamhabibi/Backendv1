@@ -8,7 +8,7 @@ const app= express()
 app.use(express.json())
 app.use(cors({
     origin: "http://localhost:3000"
-}))
+})) 
 connection()
 app.listen(port,console.log(`server is runing at http://192.168.3.63:${port}`))
 app.use("/product",router)

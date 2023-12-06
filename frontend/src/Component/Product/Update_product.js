@@ -4,20 +4,20 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { AddProduct } from "./Redux/Action";
+import { UpdateProduct } from "../Redux/Action";
 
-function Add_product() {
+function Update_product({data}) {
   const [show, setShow] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [name, setName] = useState(data.name);
+  const [description, setDescription] = useState(data.description);
+  const [price, setPrice] = useState(data.price);
   const [image, setImage] = useState([]);
  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
   const dispatch = useDispatch();
-  const Add = async () => {
+  const Update = async () => {
     const formaData=new FormData()
     formaData.append('file',image)
     formaData.append('upload_preset','ml_default')
@@ -27,20 +27,25 @@ function Add_product() {
     .then(
       (res)=>
         {dispatch
-          (AddProduct(
+          (UpdateProduct(data._id,
             {name,description,price,image:res.data.url}
             )
           ); 
         }
         )
-      }
-    
+      }else{
+            dispatch
+            (UpdateProduct(data._id,
+                {name,description,price,image:data.image}
+                )
+            ); 
+            }            
     handleClose();
   };
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-            Ajouter un produits
+            Modifier un produits
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -55,6 +60,7 @@ function Add_product() {
                 type="Name"
                 placeholder="Name"
                 autoFocus
+                defaultValue={data.name}
                 onChange={(e) => setName(e.target.value)}
               />
             </Form.Group>
@@ -64,6 +70,7 @@ function Add_product() {
                 type="text"
                 placeholder="description"
                 autoFocus
+                defaultValue={data.description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </Form.Group>
@@ -83,6 +90,7 @@ function Add_product() {
                 type="number"
                 placeholder="price"
                 autoFocus
+                defaultValue={data.price}
                 onChange={(e) => setPrice(e.target.value)}
               />
             </Form.Group>
@@ -93,7 +101,7 @@ function Add_product() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={Add}>
+          <Button variant="primary" onClick={Update}>
             Save Changes
           </Button>
         </Modal.Footer>
@@ -102,4 +110,4 @@ function Add_product() {
   );
 }
 
-export default Add_product;
+export default Update_product;

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import './ListUsers.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { GetUsers, deletUser } from './Redux/Action';
- 
+import { GetUsers, deletUser } from '../Redux/Action';
+import UpdateUser from './UpdateUser';
+  
 function ListUsers() {
     const dispatch = useDispatch()
 
@@ -20,7 +21,7 @@ function ListUsers() {
     <div className="card">
       <div className="top-container">
         <img
-          src="https://i.imgur.com/G1pXs7D.jpg"
+          src={e.imageuser}
           className="img-fluid profile-image"
           width={70}
         />
@@ -34,11 +35,10 @@ function ListUsers() {
         <span className="recent-orders">Recent orders</span>
       </div>
       <div className="wishlist-border pt-2">
-        <span className="wishlist">Wishlist</span>
+        <UpdateUser data={e}/>
       </div>
       <div className="fashion-studio-border pt-2">
         <span className="fashion-studio" onClick={()=>dispatch(deletUser(e._id))}>Delete user</span>
-        <button onClick={()=>dispatch(deletUser(e._id))}>Delete</button>
 
       </div>
     </div>

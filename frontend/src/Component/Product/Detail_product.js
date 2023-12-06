@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import { useDispatch, useSelector } from 'react-redux';
-import { DeleteProduct, FindProduct, Get } from './Redux/Action';
+import { DeleteProduct, FindProduct, Get } from '../Redux/Action';
 import Update_product from './Update_product';
 
 import { useParams } from 'react-router-dom';
@@ -16,7 +16,7 @@ function Detail_product() {
   useEffect(() => {
     dispatch(FindProduct(id.id));
   }, []);
-  const product = useSelector((state) => state.product);
+  const product = useSelector((state) => state.products.product);
   console.log(product);
   return (
     <>

@@ -3,11 +3,12 @@ import { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import { useDispatch, useSelector } from 'react-redux';
-import { DeleteProduct, Get } from './Redux/Action';
+import { DeleteProduct, Get } from '../Redux/Action';
 import Update_product from './Update_product';
 
 import { Link, Route, Routes } from 'react-router-dom';
 import Detail_product from './Detail_product';
+import Add_product from './Add_product';
 function Get_product() {
   const dispatch = useDispatch()
 
@@ -18,7 +19,7 @@ function Get_product() {
   console.log(products);
   return (
     <>
-      
+      <Add_product />
     <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" ,justifyContent: "space-around"}}>
       {products.map((e) => (
           <CardGroup>

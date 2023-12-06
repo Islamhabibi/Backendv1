@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Register.css'
 import {  useDispatch } from 'react-redux';
-import { AddUser } from './Redux/Action';
+import { AddUser } from '../Redux/Action';
 import { Link, useNavigate } from 'react-router-dom';
 function Register_user() {
 
@@ -64,8 +64,8 @@ function Register_user() {
                   <form>
                     {/* 2 column grid layout with text inputs for the first and last names */}
                     <div className="row">
-                      <div className="col-md-6 mb-4">
-                        <div className="form-outline">
+                    
+                        <div className="form-outline mb-4">
                           <input
                             type="text"
                             id="name"
@@ -78,21 +78,8 @@ function Register_user() {
                           />
 
                         </div>
-                      </div>
-                      <div className="col-md-6 mb-4">
-                        <div className="form-outline">
-                          <input
-                            type="text"
-                            id="Lastname"
-                            name='lastname'
-                            className="form-control"
-                            placeholder="Last name"
-                            required
-                            onChange={onChange}
-                          />
-
-                        </div>
-                      </div>
+                       
+                      
                     </div>
                     {/* Email input */}
                     <div className="form-outline mb-4">

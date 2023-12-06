@@ -82,7 +82,17 @@ export const findUser = (data)=> async(dispatch)=>{
 export const updateUser = (id,data)=> async(dispatch)=>{
   try {
     const res = await axios
-      .put("http://localhost:5668/users/update"+id,data)
+      .put("http://localhost:5668/users/update/"+id,data)
+      .then((res)=>dispatch(GetUsers()))
+  } catch (error) {
+    console.log(error)
+    
+  }
+}
+export const updateUser2 = (id,data)=> async(dispatch)=>{
+  try {
+    const res = await axios
+      .put("http://localhost:5668/users/update2/"+id,data)
       .then((res)=>dispatch(GetUsers()))
   } catch (error) {
     console.log(error)
@@ -97,4 +107,4 @@ export const deletUser = (id)=> async(dispatch)=>{
   } catch (error) {
     console.log(error)
   }
-}
+} 
