@@ -3,6 +3,7 @@ import './Register.css'
 import {  useDispatch } from 'react-redux';
 import { AddUser } from '../Redux/Action';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 function Register_user() {
 
   const [formData, setFormData] = useState({
@@ -20,11 +21,16 @@ function Register_user() {
 
   }
 
+  
   const Add_user=async()=>{
     dispatch(AddUser(formData,navigate('/user/login')))
+    const res = axios
+        .post('http://localhost:5668/users/sendEmailAdmin',{email})
+        .then((res)=>alert(res.data.message))
+    
   }
-  return (
-
+  return ( 
+ 
     <>
       {/* Section: Design Block */}
       <section className="background-radial-gradient overflow-hidden">

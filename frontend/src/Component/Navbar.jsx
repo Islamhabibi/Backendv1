@@ -1,16 +1,22 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { GetUsers, logout } from './Redux/Action';
   
  
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const basket = useSelector(state=>state.products.basket)
- 
+ useEffect(()=>{
+  //getcurrent
+  dispatch(GetUsers()) 
+ },[])
+ const user= useSelector(state=>state.users.users)
    
 
-  return (
+  return (<>
     <nav className="navbar navbar-expand-lg navbar-light p-3 border-bottom">
       <div className="container">
         <Link to="/" className="navbar-brand">
@@ -32,7 +38,7 @@ const Navbar = () => {
           <ul className="navbar-nav ms-auto">
             
            
-              <>
+            
                 <li className="nav-item">
                   <Link className="nav-link" to={'/products'}>
                      List of products
@@ -53,18 +59,29 @@ const Navbar = () => {
                   <Link className="nav-link" to={'/user/login'}>
                       Login
                   </Link>
+                  </li>
+                  <li className="nav-item">
+                  <Link className="nav-link" onClick={()=>dispatch(logout(navigate))}>
+                      Logout
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to={'/users/get'}>
                       List of users
                   </Link>
                 </li>
-              </>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/contact'}>
+                      contact
+                  </Link>
+                </li>
+            
           
           </ul>
         </div>
       </div>
     </nav>
+    </>
   );
 };
 

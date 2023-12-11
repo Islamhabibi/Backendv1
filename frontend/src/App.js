@@ -11,6 +11,7 @@ import Navbar from './Component/Navbar';
 import Basket from './Component/Product/Basket';
 import Cancel from './Component/Product/cancel';
 import Success from './Component/Product/success';
+import Contact from './Component/Users/Contact';
 function App() {
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route path='users/get' element={<ListUsers />} />
         <Route path='/success' element={<Success />} />
         <Route path='/cancel' element={<Cancel />} />
+        <Route path='/contact' element={<Contact />} />
 
 
       </Routes>

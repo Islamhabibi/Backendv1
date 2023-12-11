@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALLPRODUCT, ALLUSERS, ONEPRODUCT, POSTPRODUCT } from "./ActionType";
+import { ALLPRODUCT, ALLUSERS, LOGOUT, ONEPRODUCT, POSTPRODUCT } from "./ActionType";
 export const Get = () => async (dispatch) => {
     try {
       const res = await axios
@@ -56,6 +56,7 @@ export const GetUsers = ()=> async(dispatch)=>{
     const res= await axios
       .get("http://localhost:5668/users/get/")
       .then((res)=>dispatch({type:ALLUSERS, payload:res.data.AllUsers}))
+      console.log(res.data)
   } catch (error) {
     console.log(error);
   }
@@ -108,3 +109,10 @@ export const deletUser = (id)=> async(dispatch)=>{
     console.log(error)
   }
 } 
+export const logout = (navigate)=>{
+  localStorage.removeItem('tokenuser')
+  navigate('/login')
+  return{
+    type:LOGOUT
+  }
+}

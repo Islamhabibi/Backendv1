@@ -1,4 +1,4 @@
-import { ALLPRODUCT, ALLUSERS, ONEPRODUCT, POSTPRODUCT } from "./ActionType"
+import { ALLPRODUCT, ALLUSERS, LOGOUT, ONEPRODUCT, POSTPRODUCT } from "./ActionType"
 
 const initialState = {
     products: [],
@@ -28,9 +28,8 @@ export const users_reducer = (state = initialState, { type, payload }) => {
 
         case ALLUSERS:
             return { ...state, users: payload }
-         
-        
-
+        case LOGOUT:
+            return{...state, users: {}} 
         default:
             return state
     }
